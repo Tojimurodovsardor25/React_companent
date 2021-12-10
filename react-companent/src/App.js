@@ -11,23 +11,23 @@ class App extends Component {
       { title: 'Rich dad and', year: 2005 },
     ],
     title: 'hello',
+    // inpVal: '',
     isNone: false
   }
 
-  changeTitleHandler = (title) => {
-    console.log('CLicked');
-
-
-    this.setState({
-      title: title
-    })
+  changeTitleHandler = () => {
+    if (this.state.inpVal === "") {
+      console.log('error');
+    } else {
+      this.setState({
+        title: this.state.qwe
+      })
+    }
   }
 
   inputHandler = (event) => {
-    const val = event.target.value
-
     this.setState({
-      title: val
+      qwe: event.target.value
     })
   }
 
@@ -49,17 +49,8 @@ class App extends Component {
         <h1>{this.state.title}</h1>
 
         <input type="text" onChange={this.inputHandler} />
-        <button onClick={() => this.changeTitleHandler('Clicked function')}>Click</button>
+        <button onClick={this.changeTitleHandler}>Click</button>
         <div className="box">
-          {
-            this.state.books.map((book, index) => {
-              if (this.state.isNone) {
-                return (
-                  <Book key={index} title={book.title} yaer={book.year} onChangeHandler={this.changeTitleHandler.bind(this, book.title)} />
-                )
-              }
-            })
-          }
         </div>
         <button onClick={this.offHandler}>OFF</button>
       </div>
